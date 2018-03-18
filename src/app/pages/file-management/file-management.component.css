@@ -1,0 +1,29 @@
+#main-grid-container{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+#file-input-container {
+    /* display: inline-block; */
+    overflow: hidden;
+    position: relative;
+}
+
+#file-input-container button {
+    background-color: #434C9F;
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+
+#file-input-container input {
+    cursor: pointer;
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+
