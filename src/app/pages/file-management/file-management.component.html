@@ -1,6 +1,20 @@
 <div id="main-grid-container">
     <div id="file-input-container">
-        <button class="button">Upload a File</button>
+        <button class="button">Upload Files</button>
         <input type="file" name="file-input">
     </div>
+    <table>
+        <tr>
+            <th>File Name</th>
+            <th>File Type</th>
+            <th>File Size</th>
+            <th>Download</th>
+        </tr>
+        <tr *ngFor="let file of files">
+            <td>{{ file.filename }}</td>
+            <td>{{ file.filetype }}</td>
+            <td>{{ file.size }}</td>
+        </tr>
+    </table>
+    <input type="text" name="search">
 </div>

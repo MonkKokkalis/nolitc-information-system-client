@@ -1,12 +1,14 @@
 #main-grid-container{
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
 }
 
 #file-input-container {
-    /* display: inline-block; */
     overflow: hidden;
     position: relative;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
 }
 
 #file-input-container button {
@@ -14,7 +16,9 @@
     border: 1px solid grey;
     border-radius: 5px;
     color: white;
-    padding: 10px;
+    padding: 12px 10px;
+    font-size: 14px;
+    font-family: Franklin Gothic Medium;
 }
 
 #file-input-container input {
@@ -26,4 +30,39 @@
     opacity: 0;
 }
 
+table {
+    width: 100%;
+    grid-column: 3 / 11;
+    grid-row: 3 / 4;
+    border-radius: 6px;
+}
 
+th {
+    background-color: #176188;
+    color: #f2f2f2;
+    text-align: center;
+}
+
+td {
+    background-color: #ffffffc9;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+}
+
+input[name=search] {
+    background-image: url('../../../assets/search.png');
+    background-position: 10px 50%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    border: 1px solid black;
+    font-family: Verdana;
+    font-size: 12px;
+    grid-column: 9 / 11;
+    grid-row: 2 / 3;
+    margin-top: 10px;
+    padding-left: 30px;
+}
