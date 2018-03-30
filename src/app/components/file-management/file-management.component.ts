@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DownloadService } from './download.service';
 import { FileService } from './getfiles.service';
 import { Files, File } from '../../interfaces/files.interface';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-file-management',
@@ -10,21 +11,23 @@ import { Files, File } from '../../interfaces/files.interface';
   providers: [FileService, DownloadService]
 })
 export class FileManagementComponent implements OnInit {
-    files: Array<File>;
+    files$: Observable<Object>;
+    filesArray: [File[]];
+    files: File[];
     url: string;
     constructor(private fileService: FileService, private downloadService: DownloadService) { }
     ngOnInit() {
-        this.fileService.getFiles()
+        this.files$ = this.fileService.getFiles();
+        this.files$
         .subscribe((data: Files) => {
-            this.files = data.files;
+            this.filesArray = data.files;
+            this.files = data.files[0];
             this.url = data.url;
-            console.log(this.url);
-            this.downloadService.downloadFile({url: this.url, filename: 'Airlines.docx'});
-        });
-            // .subscribe((data) => {
-            //     console.log(data);
-            // });
+         });
     }
 
-
+    test(param) {
+        this.files = this.filesArray[param];
+    }
 }
+// this.downloadService.downloadFile({url: this.url, filename: 'Airlines.docx'});

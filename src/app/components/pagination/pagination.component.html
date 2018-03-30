@@ -1,0 +1,6 @@
+<div id="pagination">
+    <button type="button" class="arrow" (click)="pageLeft()">&laquo;</button>
+    <button type="button" *ngFor="let element of page; index as i "
+        (click)="onClick(i)">{{i + 1  + arrayPointer}}</button>
+    <button type="button" class="arrow" (click)="pageRight()">&raquo;</button>
+</div>

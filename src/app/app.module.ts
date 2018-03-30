@@ -3,18 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './pages/nav/nav.component';
-import { FileManagementComponent } from './pages/file-management/file-management.component';
+import { NavComponent } from './components/nav/nav.component';
+import { FileManagementComponent } from './components/file-management/file-management.component';
 import { RoutingModule } from './app-routing.module';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     FileManagementComponent,
-    HomeComponent
+    HomeComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

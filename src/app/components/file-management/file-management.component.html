@@ -14,7 +14,11 @@
             <td>{{ file.filename }}</td>
             <td>{{ file.filetype }}</td>
             <td>{{ file.size }}</td>
+            <td>{{url}}</td>
         </tr>
     </table>
     <input type="text" name="search">
+    <div id="pagination">
+        <app-pagination [page$]="files$" (pageClick)="test($event)"></app-pagination>
+    </div>
 </div>

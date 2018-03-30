@@ -66,3 +66,10 @@ input[name=search] {
     margin-top: 10px;
     padding-left: 30px;
 }
+
+#pagination {
+    border: 1px solid black;
+    text-align: center;
+    grid-column: 4 / 9;
+    grid-row: 4 / 5;
+}

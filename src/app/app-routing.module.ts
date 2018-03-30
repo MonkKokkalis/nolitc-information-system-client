@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { FileManagementComponent } from './pages/file-management/file-management.component';
+import { HomeComponent } from './components/home/home.component';
+import { FileManagementComponent } from './components/file-management/file-management.component';
 
 const routes: Routes = [
     {path: 'home', component: HomeComponent},

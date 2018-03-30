@@ -1,6 +1,6 @@
 export interface Files {
     url: string;
-    files: File[];
+    files: [File[]];
 }
 
 export interface File {
