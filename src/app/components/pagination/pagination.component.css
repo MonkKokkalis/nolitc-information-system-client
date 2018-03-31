@@ -1,5 +1,13 @@
 #pagination {
-    display: inline-block;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+#arrowLeft{
+    grid-column: 1 / 2;
+}
+
+#arrowRight {
+    grid-column: 7 / 8;
 }
 
 button {
@@ -7,18 +15,25 @@ button {
     background-color: none;
     color: black;
     font-size: 14px;
-    padding: 8px 14px;
+    padding: 8px 10px;
     cursor: pointer;
 }
 
 .arrow {
     border: none;
+    background-color: transparent;
 }
 
-button:hover:not(.arrow) {
+button:hover:not(.arrow):not(.active) {
     color: white;
     background-color: rgb(111, 117, 163)
 }
 
+.hidden {
+    visibility: hidden
+}
 
-
+.active {
+    background-color: rgb(19, 78, 206);
+    color: white;
+}

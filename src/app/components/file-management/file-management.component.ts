@@ -15,7 +15,8 @@ export class FileManagementComponent implements OnInit {
     filesArray: [File[]];
     files: File[];
     url: string;
-    constructor(private fileService: FileService, private downloadService: DownloadService) { }
+    constructor(private fileService: FileService,
+        private downloadService: DownloadService) { }
     ngOnInit() {
         this.files$ = this.fileService.getFiles();
         this.files$
@@ -26,8 +27,8 @@ export class FileManagementComponent implements OnInit {
          });
     }
 
-    test(param) {
-        this.files = this.filesArray[param];
+    changePage(pageNumber: number) {
+        this.files = this.filesArray[pageNumber];
     }
 }
 // this.downloadService.downloadFile({url: this.url, filename: 'Airlines.docx'});

@@ -3,22 +3,25 @@
         <button class="button">Upload Files</button>
         <input type="file" name="file-input">
     </div>
-    <table>
-        <tr>
-            <th>File Name</th>
-            <th>File Type</th>
-            <th>File Size</th>
-            <th>Download</th>
-        </tr>
-        <tr *ngFor="let file of files">
-            <td>{{ file.filename }}</td>
-            <td>{{ file.filetype }}</td>
-            <td>{{ file.size }}</td>
-            <td>{{url}}</td>
-        </tr>
-    </table>
+    <div id="table-container">
+        <table>
+            <tr>
+                <th class="filename">File Name</th>
+                <th class="filetype">File Type</th>
+                <th class="filesize">File Size</th>
+                <th class="download">Download</th>
+            </tr>
+            <tr *ngFor="let file of files">
+                <td class="filename">{{ file.filename }}</td>
+                <td class="filetype">{{ file.filetype }}</td>
+                <td class="filesize">{{ file.size }}</td>
+                <td class="download">{{url}}</td>
+            </tr>
+        </table>
+    </div>
     <input type="text" name="search">
     <div id="pagination">
-        <app-pagination [page$]="files$" (pageClick)="test($event)"></app-pagination>
+        <app-pagination [page$]="files$"
+        (pageClick)="changePage($event)"></app-pagination>
     </div>
 </div>
