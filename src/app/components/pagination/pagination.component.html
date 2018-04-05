@@ -1,9 +1,11 @@
 <div id="pagination">
     <button type="button" class="arrow" id="arrowLeft"
-     (click)="pageLeft()" [ngClass]="{hidden: !getArrayPointerLeft()}">&laquo;</button>
-        <button type="button" *ngFor="let element of page; index as i"
-        (click)="onClick(i, $event)"
+     (click)="pageLeft()"
+     [ngClass]="{hidden: !getArrayPointerLeft(), hidden: page.length < 5}">&laquo;</button>
+     <div id="page-buttons">
+        <button id="page" type="button" *ngFor="let element of page; index as i" (click)="onClick(i, $event)"
         [ngClass]="{active: (i == 0)}">{{i + 1 + arrayPointer}}</button>
+     </div>
     <button type="button" class="arrow" id="arrowRight"
     (click)="pageRight()" [ngClass]="{hidden: getArrayPointerRight()}">&raquo;</button>
 </div>

@@ -1,7 +1,7 @@
 <div id="main-grid-container">
     <div id="file-input-container">
         <button class="button">Upload Files</button>
-        <input type="file" name="file-input">
+        <input type="file" multiple name="file-input" (change)="upload($event)">
     </div>
     <div id="table-container">
         <table>
