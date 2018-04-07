@@ -8,3 +8,7 @@ export interface File {
     size: string;
     filetype: string;
 }
+
+export interface Response {
+    files: number;
+}

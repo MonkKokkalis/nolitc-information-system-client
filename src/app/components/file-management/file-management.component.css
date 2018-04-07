@@ -4,6 +4,11 @@
     grid-gap: 10px;
 }
 
+#alert {
+    grid-column: 5 / 9;
+    grid-row: 1 / 2;
+}
+
 #file-input-container {
     overflow: hidden;
     position: relative;

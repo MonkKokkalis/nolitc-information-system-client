@@ -1,4 +1,7 @@
 <div id="main-grid-container">
+    <div id="alert">
+        <app-alert [hidden]="alertHidden" [alertText]="alertText"></app-alert>
+    </div>
     <div id="file-input-container">
         <button class="button">Upload Files</button>
         <input type="file" multiple name="file-input" (change)="upload($event)">

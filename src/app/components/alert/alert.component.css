@@ -1,0 +1,15 @@
+.alert {
+    background-color: rgb(14, 14, 129);
+    border: 1px;
+    border-radius: 10px;
+    color: whitesmoke;
+    font-family: 'Franklin Gothic Medium';
+    padding: 10px 15px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease-in-out 0.3s;
+}
+
+.hidden {
+    opacity: 0;
+}

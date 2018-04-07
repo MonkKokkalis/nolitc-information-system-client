@@ -7,11 +7,13 @@ export class UploadService {
 
     // httpRequest = new HttpRequest();
 
-    uploadFile(file: File) {
-         const url = 'http://192.168.254.100/api/files/upload/registrar';
-        // const url = 'http://192.168.0.113/api/files/upload/registrar';
+    uploadFile(files) {
+        const url = 'http://192.168.254.102/api/files/upload/registrar';
+        // const url = 'http://192.168.0.105/api/files/upload/registrar';
          const formData = new FormData();
-         formData.append('file', file);
-         return this.httpClient.post<File>(url, formData);
+         files.forEach(element => {
+             formData.append('files', element);
+         });
+         return this.httpClient.post(url, formData);
     }
 }

@@ -9,6 +9,7 @@ import { RoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     NavComponent,
     FileManagementComponent,
     HomeComponent,
-    PaginationComponent
+    PaginationComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
