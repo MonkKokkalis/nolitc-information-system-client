@@ -18,11 +18,11 @@
                 <td class="filename">{{ file.filename }}</td>
                 <td class="filetype">{{ file.filetype }}</td>
                 <td class="filesize">{{ file.size }}</td>
-                <td class="download">{{url}}</td>
+                <td class="download">download</td>
             </tr>
         </table>
     </div>
-    <input type="text" name="search">
+    <input type="text" name="search" #filename (keyup.enter)="getFiles(filename.value)">
     <div id="pagination">
         <app-pagination [page$]="files$"
         (pageClick)="changePage($event)"></app-pagination>

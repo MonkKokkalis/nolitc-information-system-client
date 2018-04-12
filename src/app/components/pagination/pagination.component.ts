@@ -20,9 +20,9 @@ export class PaginationComponent implements OnInit {
     ngOnInit() {
         this.arrayPointer = 0;
         this.page$
-        .subscribe((data: Files) => {
-           this.filesArray = data.files;
-           this.page =  data.files.slice(0, 5);
+        .subscribe((data: [File[]]) => {
+           this.filesArray = data;
+           this.page =  data.slice(0, 5);
         });
     }
 

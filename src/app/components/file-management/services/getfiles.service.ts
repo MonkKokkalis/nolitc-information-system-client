@@ -12,8 +12,8 @@ const httpOptions = {
 @Injectable()
 export class FileService {
     constructor(private httpClient: HttpClient) {}
-    url = 'http://192.168.254.102/api/files/get/registrar';
-    // url = 'http://192.168.0.105/api/files/get/registrar';
+    // url = 'http://192.168.254.102/api/files/get/registrar';
+    url = 'http://192.168.0.108/api/files/get/registrar';
 
     getFiles(): Observable<Object> {
         return this.httpClient.get(this.url)
