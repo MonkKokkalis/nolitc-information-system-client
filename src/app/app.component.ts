@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+    title = 'app';
+    @HostListener('document:click', ['$event']) onClick(event) {
+        const element: HTMLElement = event.target;
+        if (element.tagName !== 'BUTTON') {
+            this.modalService.modalSubject.next(false);
+        }
+    }
+
+    constructor(private modalService: ModalService) {}
 }

@@ -1,5 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { Files, File } from '../../interfaces/files.interface';
 
 @Component({
@@ -9,8 +10,8 @@ import { Files, File } from '../../interfaces/files.interface';
 })
 
 export class PaginationComponent implements OnInit {
-    @Input() page$: Observable<Object>;
     @Output() pageClick: EventEmitter<number> = new EventEmitter();
+    @Input() filesSubject: Subject<[File[]]>;
     filesArray: [File[]];
     page = [];
     arrayPointer: number;
@@ -19,7 +20,7 @@ export class PaginationComponent implements OnInit {
 
     ngOnInit() {
         this.arrayPointer = 0;
-        this.page$
+        this.filesSubject
         .subscribe((data: [File[]]) => {
            this.filesArray = data;
            this.page =  data.slice(0, 5);

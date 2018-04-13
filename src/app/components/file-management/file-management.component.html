@@ -22,9 +22,9 @@
             </tr>
         </table>
     </div>
-    <input type="text" name="search" #filename (keyup.enter)="getFiles(filename.value)">
+    <input type="text" name="search" #filename (keyup.enter)="searchFile(filename.value)">
     <div id="pagination">
-        <app-pagination [page$]="files$"
+        <app-pagination [filesSubject]="filesSubject"
         (pageClick)="changePage($event)"></app-pagination>
     </div>
 </div>

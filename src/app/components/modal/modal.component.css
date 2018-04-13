@@ -1,0 +1,23 @@
+.modal {
+    display: none;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    margin: 15px auto;
+    background-color: green;
+    padding: 20px;
+    width: 50%;
+    border: 1px solid black;
+}
+
+.visible {
+    display: block;
+}

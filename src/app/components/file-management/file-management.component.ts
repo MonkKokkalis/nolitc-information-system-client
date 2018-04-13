@@ -3,6 +3,7 @@ import { DownloadService } from './services/download.service';
 import { FileService } from './services/getfiles.service';
 import { Files, File, Response } from '../../interfaces/files.interface';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { UploadService } from './services/upload.service';
 import { SearchFileService } from './services/searchFile';
 @Component({
@@ -15,17 +16,20 @@ export class FileManagementComponent implements OnInit {
     alertHidden = true;
     alertText = '';
     files$: Observable<Object>;
+    filesSubject: Subject<[File[]]>;
     filesArray: [File[]];
     files: File[];
     constructor(private fileService: FileService,
         private downloadService: DownloadService, private uploadService: UploadService,
         private searchFileService: SearchFileService) { }
     ngOnInit() {
+        this.filesSubject = new Subject();
         this.files$ = this.fileService.getFiles();
         this.files$
         .subscribe((data: [File[]]) => {
             this.filesArray = data;
             this.files = data[0];
+            this.filesSubject.next(data);
          });
     }
 
@@ -49,10 +53,12 @@ export class FileManagementComponent implements OnInit {
         this.alertHidden = true;
     }
 
-    getFiles(filename: string) {
+    searchFile(filename: string) {
         this.searchFileService.searchFile(filename)
-        .subscribe(response => {
-            console.log(response);
+        .subscribe((data: [File[]]) => {
+            this.filesSubject.next(data);
+            this.filesArray = data;
+            this.files = data[0];
         });
     }
 }
