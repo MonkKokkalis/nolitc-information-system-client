@@ -6,18 +6,90 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
     background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+button {
+    color: whitesmoke;
+    background-color: rgb(33, 33, 148);
+    border: 1px solid grey;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
 }
 
 .modal-content {
-    margin: 15px auto;
-    background-color: green;
+    margin: 20px auto;
+    background-color: #f2f2f2;
     padding: 20px;
-    width: 50%;
+    width: 30%;
+    border-radius: 5px;
     border: 1px solid black;
+}
+
+.footer {
+    margin-left: 32px;
+}
+
+.header {
+    display: block;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+span {
+    position: relative;
+    height: 0;
+    width: 0;
+    bottom: 10px;
+    right: 20px;
+    float: right;
+    color: #aaaaaa;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+span:hover, span:focus {
+    color: #000;
+    cursor: pointer;
 }
 
 .visible {
     display: block;
+}
+
+.input {
+    width: 70%;
+    margin: 10px auto;
+    padding: 8px;
+    border: 1px solid rgb(79, 79, 156);
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+input::placeholder {
+    font-size: 18px;
+    opacity: 0.6;
+}
+
+.body {
+    text-align: center;
+    margin: 10px auto;
+    width: 100%;
+}
+
+#username {
+    background-image: url('../../../assets/user.png');
+    background-position: 10px 50%;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+}
+
+#password {
+    background-image: url('../../../assets/lock.png');
+    background-position: 10px 40%;
+    background-repeat: no-repeat;
+    padding-left: 50px;
 }

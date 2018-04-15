@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ModalService } from './services/modal.service';
 
 @Component({
@@ -10,7 +10,7 @@ export class AppComponent {
     title = 'app';
     @HostListener('document:click', ['$event']) onClick(event) {
         const element: HTMLElement = event.target;
-        if (element.tagName !== 'BUTTON') {
+        if (element.tagName !== 'BUTTON' && !element.parentElement.classList[0]) {
             this.modalService.modalSubject.next(false);
         }
     }
