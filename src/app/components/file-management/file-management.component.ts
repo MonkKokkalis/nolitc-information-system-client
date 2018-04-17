@@ -47,6 +47,12 @@ export class FileManagementComponent implements OnInit {
             this.alertHidden = false;
             setTimeout(this.hideAlert, 1500);
         });
+        this.fileService.getFiles()
+            .subscribe((data: [File[]]) => {
+                this.filesArray = data;
+                this.files = data[0];
+                this.filesSubject.next(data);
+            });
     }
 
     hideAlert = () => {
@@ -60,6 +66,12 @@ export class FileManagementComponent implements OnInit {
             this.filesArray = data;
             this.files = data[0];
         });
+    }
+
+    downloadFile(url: string) {
+        const length = url.split('\\').length;
+        const filename = url.split('\\')[length - 1];
+        this.downloadService.downloadFile({ url: url, filename: filename });
     }
 }
 // this.downloadService.downloadFile({url: this.url, filename: 'Airlines.docx'});

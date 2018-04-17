@@ -10,9 +10,12 @@ export class AppComponent {
     title = 'app';
     @HostListener('document:click', ['$event']) onClick(event) {
         const element: HTMLElement = event.target;
-        if (element.tagName !== 'BUTTON' && !element.parentElement.classList[0]) {
-            this.modalService.modalSubject.next(false);
-        }
+            if (!element.parentElement) {
+                return this.modalService.modalSubject.next(false);
+            }
+            if (element.tagName !== 'BUTTON' && !element.parentElement.classList[0]) {
+                this.modalService.modalSubject.next(false);
+            }
     }
 
     constructor(private modalService: ModalService) {}

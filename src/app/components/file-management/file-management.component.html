@@ -18,7 +18,9 @@
                 <td class="filename">{{ file.filename }}</td>
                 <td class="filetype">{{ file.filetype }}</td>
                 <td class="filesize">{{ file.size }}</td>
-                <td class="download">download</td>
+                <td class="download">
+                    <a (click)="downloadFile(file.downloadUrl)">download</a>
+                </td>
             </tr>
         </table>
     </div>

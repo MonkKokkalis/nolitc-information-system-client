@@ -18,9 +18,6 @@ export class ModalComponent implements OnInit {
     usernameFormControl: FormControl;
     passwordFormControl: FormControl;
     visibility: boolean;
-    // testing purposes
-    authState: Observable<AuthenticationState>;
-    //
     constructor(private modalService: ModalService,
         private authenticationService: AuthenticationService,
         private store: Store<{authenticationState: AuthenticationState}>) {}
@@ -33,11 +30,6 @@ export class ModalComponent implements OnInit {
         this.modalService.modalSubject.subscribe(data => this.visibility = data);
         this.usernameFormControl = <FormControl> this.signInForm.controls.username;
         this.passwordFormControl = <FormControl> this.signInForm.controls.password;
-
-        // testing
-        this.authState = this.store.select('authenticationState');
-        this.authState.subscribe(data => console.log(data));
-        //
     }
 
     closeModal() {
@@ -50,6 +42,7 @@ export class ModalComponent implements OnInit {
         this.authenticationService.signIn({username: username, password: password})
             .subscribe((data: AuthInfo) => {
                 this.store.dispatch(new stateActions.SignIn(data));
+                this.modalService.modalSubject.next(false);
             },
             (error) => {
                 console.log(error);
