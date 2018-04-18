@@ -14,16 +14,18 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { RoutingModule } from './app-routing.module';
 import { authenticationReducer } from './store/reducers/authentication.reducer';
 import { AuthenticationService } from './services/authentication.service';
+import { IconDirective } from './directives/icon.directive';
 
 @NgModule({
   declarations: [
+    AlertComponent,
     AppComponent,
-    NavComponent,
     FileManagementComponent,
     HomeComponent,
-    PaginationComponent,
-    AlertComponent,
-    ModalComponent
+    IconDirective,
+    ModalComponent,
+    NavComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

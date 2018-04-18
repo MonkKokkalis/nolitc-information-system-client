@@ -10,6 +10,11 @@
     z-index: 1;
 }
 
+img {
+    height: 150px;
+    width: 150px;
+}
+
 button {
     color: whitesmoke;
     background-color: rgb(33, 33, 148);

@@ -46,13 +46,13 @@ export class FileManagementComponent implements OnInit {
                 concat(`${number}successfully uploaded`);
             this.alertHidden = false;
             setTimeout(this.hideAlert, 1500);
+            this.fileService.getFiles()
+                .subscribe((data: [File[]]) => {
+                    this.filesArray = data;
+                    this.files = data[0];
+                    this.filesSubject.next(data);
+                });
         });
-        this.fileService.getFiles()
-            .subscribe((data: [File[]]) => {
-                this.filesArray = data;
-                this.files = data[0];
-                this.filesSubject.next(data);
-            });
     }
 
     hideAlert = () => {

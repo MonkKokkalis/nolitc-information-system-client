@@ -15,11 +15,15 @@
                 <th class="download">Download</th>
             </tr>
             <tr *ngFor="let file of files">
-                <td class="filename">{{ file.filename }}</td>
-                <td class="filetype">{{ file.filetype }}</td>
-                <td class="filesize">{{ file.size }}</td>
+                <td class="filename padding">{{ file.filename }}</td>
+                <td class="filetype" [appIcon]="file.filetype">
+                    <div>{{ file.filetype }}</div>
+                </td>
+                <td class="filesize"> {{ file.size }} </td>
                 <td class="download">
+                    <div class="download">
                     <a (click)="downloadFile(file.downloadUrl)">download</a>
+                    </div>
                 </td>
             </tr>
         </table>

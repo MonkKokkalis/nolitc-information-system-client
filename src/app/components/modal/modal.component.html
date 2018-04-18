@@ -1,6 +1,8 @@
 <div class="modal" #modal [ngClass]="{visible: visibility}">
     <div class="modal-content">
-        <div class="header">Sign In<span (click)="closeModal()">&times;</span></div>
+        <div class="header"><img src="../../assets/signin.png" alt="sign in">
+            <span (click)="closeModal()">&times;</span>
+        </div>
         <hr>
         <div class="body">
            <form [formGroup]="signInForm">

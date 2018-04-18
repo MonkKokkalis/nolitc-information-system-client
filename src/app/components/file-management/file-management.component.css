@@ -4,8 +4,17 @@
     grid-gap: 10px;
 }
 
+a {
+    color: blue;
+    text-decoration: underline;
+}
+
 a:hover {
     cursor: pointer;
+}
+
+td:not(.filetype) {
+    padding-top: 8px;
 }
 
 #alert {
@@ -28,7 +37,7 @@ a:hover {
     border-radius: 5px;
     color: white;
     padding: 12px 10px;
-    font-size: 14px;
+    font-size: 18x;
     font-family: Franklin Gothic Medium;
 }
 
@@ -54,12 +63,14 @@ table {
 td {
     background-color: #ffffffc9;
     padding-left: 10px;
+    font-family: Verdana;
 }
 
 th {
     background-color: #176188;
     color: #f2f2f2;
     text-align: center;
+    padding-top: 8px;
 }
 
 th, td {
@@ -69,7 +80,7 @@ th, td {
 
 tr {
     display: grid;
-    grid-auto-rows: minmax(30px, 40px);
+    grid-auto-rows: minmax(30px, 50px);
     grid-template-columns: repeat(12, 1fr);
 }
 
@@ -86,9 +97,11 @@ tr {
 }
 
 .download {
-    padding: 0;
-    text-align: center;
     grid-column: 11 / 13;
+}
+
+.filetype div {
+    padding-top: 8px;
 }
 
 input[name=search] {
@@ -106,7 +119,9 @@ input[name=search] {
 }
 
 #pagination {
+    margin-top: 40px;
     text-align: center;
     grid-column: 5 / 9;
     grid-row: 4 / 5;
 }
+
