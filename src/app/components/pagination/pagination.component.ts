@@ -19,11 +19,13 @@ export class PaginationComponent implements OnInit {
     constructor(private rend: Renderer2) { }
 
     ngOnInit() {
+        this.filesArray = [null];
         this.arrayPointer = 0;
         this.filesSubject
         .subscribe((data: [File[]]) => {
-           this.filesArray = data;
-           this.page =  data.slice(0, 5);
+            this.arrayPointer = 0;
+            this.page =  data.slice(0, 5);
+            this.filesArray = data;
         });
     }
 
@@ -45,16 +47,9 @@ export class PaginationComponent implements OnInit {
         this.rend.addClass(event.target, 'active');
     }
 
-    getArrayPointerLeft() {
-        if (this.page.slice(this.arrayPointer,
-            this.arrayPointer + 5).length < 5) {
-            return true;
-        }
-        return false;
-    }
-
     getArrayPointerRight() {
-        if (this.page.length < 5) {
+        if (this.filesArray.slice(this.arrayPointer + 5,
+                this.arrayPointer + 10).length < 1) {
             return true;
         }
         return false;

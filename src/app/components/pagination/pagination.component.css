@@ -3,15 +3,15 @@
     grid-template-columns: repeat(8, 1fr);
 }
 #arrowLeft{
-    grid-column: 1 / 2;
+    grid-column: 2 / 3;
 }
 
 #arrowRight {
-    grid-column: 8 / 9;
+    grid-column: 7 /8;
 }
 
 #page-buttons {
-    grid-column: 2 / 8;
+    grid-column: 3 / 7;
 }
 
 #page {
@@ -24,7 +24,7 @@ button {
     color: black;
     font-size: 14px;
     padding: 8px 10px;
-    cursor: pointer;
+    cursor: pointer
 }
 
 .arrow {

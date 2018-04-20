@@ -1,10 +1,11 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ModalService } from '../../services/modal.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { AuthenticationState, AuthInfo } from '../../interfaces/ngrx.interface';
-import * as stateActions from '../../store/actions/authentication.actions';
+import { AuthInfo, AuthenticationState } from '../../interfaces/ngrx.interface';
+import * as authActions from '../../store/actions/authentication.actions';
+import * as fromRoot from '../../store/reducers/app.reducer';
 import { Observable } from 'rxjs/Observable';
 @Component({
     selector: 'app-modal',
@@ -18,11 +19,13 @@ export class ModalComponent implements OnInit {
     usernameFormControl: FormControl;
     passwordFormControl: FormControl;
     visibility: boolean;
+    authState$: Observable<AuthenticationState>;
     constructor(private modalService: ModalService,
         private authenticationService: AuthenticationService,
-        private store: Store<{authenticationState: AuthenticationState}>) {}
+        private store: Store<fromRoot.AppState>) {}
 
     ngOnInit() {
+        this.authState$ = this.store.pipe(select(fromRoot.selectAuth));
         this.signInForm = new FormGroup({
             'username': new FormControl(),
             'password': new FormControl()
@@ -41,7 +44,7 @@ export class ModalComponent implements OnInit {
         const password = this.passwordFormControl.value;
         this.authenticationService.signIn({username: username, password: password})
             .subscribe((data: AuthInfo) => {
-                this.store.dispatch(new stateActions.SignIn(data));
+                this.store.dispatch(new authActions.SignIn(data));
                 this.modalService.modalSubject.next(false);
             },
             (error) => {

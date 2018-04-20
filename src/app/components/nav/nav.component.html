@@ -6,7 +6,8 @@
     <button class="button" (click)="showModal()"
         *ngIf="!(authState | async)?.token; else elseTemplate">Sign In</button>
     <ng-template #elseTemplate>
-        <button class="button">Sign Out</button>
+        <button class="button" (click)="signOut()">Sign Out</button>
     </ng-template>
+
     <app-modal></app-modal>
 </div>

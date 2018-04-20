@@ -6,6 +6,20 @@
         <button class="button">Upload Files</button>
         <input type="file" multiple name="file-input" (change)="upload($event)">
     </div>
+    <div id="select">
+        <div *ngIf="(authInfo$ | async).user?.username === 'registrar'; else elseTemplate">
+            registrar select box
+        </div>
+        <ng-template #elseTemplate>
+            <div>
+                <select name="instructorSelectBox" id="instructorSB">
+                    <option value="private">Private</option>
+                    <option value="public">Public</option>
+                    <option value="protected">Protected</option>
+                </select>
+            </div>
+        </ng-template>
+    </div>
     <div id="table-container">
         <table>
             <tr>

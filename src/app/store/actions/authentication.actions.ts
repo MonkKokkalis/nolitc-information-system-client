@@ -1,11 +1,19 @@
 import { Action } from '@ngrx/store';
 import { AuthInfo } from '../../interfaces/ngrx.interface';
 
-export const SIGNIN = 'SIGNIN';
+export enum AuthActionTypes {
+    SIGNIN = '[Authentication] SignIn',
+    SIGNOUT = '[Authentication] SignOut'
+}
 
 export class SignIn implements Action {
-    readonly type = SIGNIN;
+    readonly type = AuthActionTypes.SIGNIN;
     constructor(public payload: AuthInfo) {}
 }
 
-export type AuthActions = SignIn;
+export class SignOut implements Action {
+    readonly type = AuthActionTypes.SIGNOUT;
+}
+
+export type AuthActions = SignIn | SignOut;
+

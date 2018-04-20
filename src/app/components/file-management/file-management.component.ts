@@ -1,11 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DownloadService } from './services/download.service';
+import { UploadService } from './services/upload.service';
+import { SearchFileService } from './services/searchFile';
 import { FileService } from './services/getfiles.service';
+
+import { AuthenticationState, AuthInfo, User } from '../../interfaces/ngrx.interface';
+import { map, switchMap, catchError } from 'rxjs/operators';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Router } from '@angular/router';
+
 import { Files, File, Response } from '../../interfaces/files.interface';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { UploadService } from './services/upload.service';
-import { SearchFileService } from './services/searchFile';
+
+import { Store, select } from '@ngrx/store';
+import * as fromRoot from '../../store/reducers/app.reducer';
+
 @Component({
   selector: 'app-file-management',
   templateUrl: './file-management.component.html',
@@ -19,18 +30,31 @@ export class FileManagementComponent implements OnInit {
     filesSubject: Subject<[File[]]>;
     filesArray: [File[]];
     files: File[];
+    authInfo$: Observable<AuthenticationState>;
     constructor(private fileService: FileService,
         private downloadService: DownloadService, private uploadService: UploadService,
-        private searchFileService: SearchFileService) { }
+        private searchFileService: SearchFileService,
+        private store: Store<fromRoot.AppState>,
+        private router: Router) { }
     ngOnInit() {
         this.filesSubject = new Subject();
-        this.files$ = this.fileService.getFiles();
-        this.files$
-        .subscribe((data: [File[]]) => {
+        this.authInfo$ = this.store.pipe(select(fromRoot.selectAuth));
+        this.authInfo$
+        .pipe(
+            map((authInfo: AuthInfo) => {
+                return authInfo.user;
+            }),
+            switchMap((user: User) => this.fileService.getFiles(user)
+            ),
+            catchError(() => new ErrorObservable(null))
+        ).subscribe((data: [File[]]) => {
             this.filesArray = data;
             this.files = data[0];
             this.filesSubject.next(data);
-         });
+        }, () => {
+                this.router.navigate(['/']);
+            }
+        );
     }
 
     changePage(pageNumber: number) {
@@ -41,17 +65,17 @@ export class FileManagementComponent implements OnInit {
         const files = Array.from (event.target.files);
         this.uploadService.uploadFile(files)
         .subscribe((response: Response) => {
-            const number = response.files <= 1 ? ' file was ' : ' files were ';
-            this.alertText = response.files.toString().
-                concat(`${number}successfully uploaded`);
-            this.alertHidden = false;
-            setTimeout(this.hideAlert, 1500);
-            this.fileService.getFiles()
-                .subscribe((data: [File[]]) => {
-                    this.filesArray = data;
-                    this.files = data[0];
-                    this.filesSubject.next(data);
-                });
+            // const number = response.files <= 1 ? ' file was ' : ' files were ';
+            // this.alertText = response.files.toString().
+            //     concat(`${number}successfully uploaded`);
+            // this.alertHidden = false;
+            // setTimeout(this.hideAlert, 1500);
+            // this.fileService.getFiles()
+            //     .subscribe((data: [File[]]) => {
+            //         this.filesArray = data;
+            //         this.files = data[0];
+            //         this.filesSubject.next(data);
+            //     });
         });
     }
 
@@ -62,9 +86,9 @@ export class FileManagementComponent implements OnInit {
     searchFile(filename: string) {
         this.searchFileService.searchFile(filename)
         .subscribe((data: [File[]]) => {
-            this.filesSubject.next(data);
             this.filesArray = data;
             this.files = data[0];
+            this.filesSubject.next(data);
         });
     }
 
@@ -74,4 +98,3 @@ export class FileManagementComponent implements OnInit {
         this.downloadService.downloadFile({ url: url, filename: filename });
     }
 }
-// this.downloadService.downloadFile({url: this.url, filename: 'Airlines.docx'});
