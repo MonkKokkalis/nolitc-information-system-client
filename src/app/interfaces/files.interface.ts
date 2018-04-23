@@ -13,3 +13,11 @@ export interface File {
 export interface Response {
     files: number;
 }
+
+export interface UserFile {
+    filename: string;
+    size: string;
+    filetype: string;
+    downloadUrl: string;
+}
+

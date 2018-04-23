@@ -2,7 +2,9 @@ import { Component, Input, Output, OnInit, EventEmitter, Renderer2 } from '@angu
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Files, File } from '../../interfaces/files.interface';
-
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../store/reducers/app.reducer';
+import * as fromUserFiles from '../../store/actions/userfiles.actions';
 @Component({
     selector: 'app-pagination',
     templateUrl: './pagination.component.html',
@@ -16,7 +18,7 @@ export class PaginationComponent implements OnInit {
     page = [];
     arrayPointer: number;
 
-    constructor(private rend: Renderer2) { }
+    constructor(private rend: Renderer2, private store: Store<fromRoot.AppState>) { }
 
     ngOnInit() {
         this.filesArray = [null];
@@ -33,12 +35,19 @@ export class PaginationComponent implements OnInit {
         this.arrayPointer -= 5;
         this.page = this.filesArray.slice(this.arrayPointer, this.arrayPointer + 5);
         this.pageClick.emit(this.arrayPointer);
+
+        // testing
+        this.store.dispatch(new fromUserFiles.SetArrayPointer(-5));
     }
 
     pageRight() {
         this.arrayPointer += 5;
         this.page = this.filesArray.slice(this.arrayPointer, this.arrayPointer + 5);
         this.pageClick.emit(this.arrayPointer);
+
+        // testing
+        this.store.dispatch(new fromUserFiles.SetArrayPointer(5));
+
     }
 
     onClick(index: number, event) {

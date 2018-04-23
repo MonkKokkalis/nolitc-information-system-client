@@ -16,7 +16,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../store/reducers/app.reducer';
-
+import * as fromUserFiles from '../../store/actions/userfiles.actions';
 @Component({
   selector: 'app-file-management',
   templateUrl: './file-management.component.html',
@@ -31,6 +31,8 @@ export class FileManagementComponent implements OnInit {
     filesArray: [File[]];
     files: File[];
     authInfo$: Observable<AuthenticationState>;
+    user: User;
+    directories: string[];
     constructor(private fileService: FileService,
         private downloadService: DownloadService, private uploadService: UploadService,
         private searchFileService: SearchFileService,
@@ -42,19 +44,23 @@ export class FileManagementComponent implements OnInit {
         this.authInfo$
         .pipe(
             map((authInfo: AuthInfo) => {
+                this.user = authInfo.user;
                 return authInfo.user;
             }),
             switchMap((user: User) => this.fileService.getFiles(user)
             ),
             catchError(() => new ErrorObservable(null))
         ).subscribe((data: [File[]]) => {
+            this.filesSubject.next(data);
             this.filesArray = data;
             this.files = data[0];
-            this.filesSubject.next(data);
         }, () => {
                 this.router.navigate(['/']);
             }
         );
+        const filesArray$ = this.store.pipe(select(fromRoot.selectFilesArraySlice));
+        // testing the selector
+        filesArray$.subscribe(data => console.log(data));
     }
 
     changePage(pageNumber: number) {
@@ -86,6 +92,7 @@ export class FileManagementComponent implements OnInit {
     searchFile(filename: string) {
         this.searchFileService.searchFile(filename)
         .subscribe((data: [File[]]) => {
+            this.store.dispatch(new fromUserFiles.SetUserFiles(data));
             this.filesArray = data;
             this.files = data[0];
             this.filesSubject.next(data);
@@ -96,5 +103,9 @@ export class FileManagementComponent implements OnInit {
         const length = url.split('\\').length;
         const filename = url.split('\\')[length - 1];
         this.downloadService.downloadFile({ url: url, filename: filename });
+    }
+
+    getDirectories() {
+        // return this.fileService.getDirectories(this.user);
     }
 }

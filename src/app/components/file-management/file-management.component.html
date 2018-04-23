@@ -8,7 +8,13 @@
     </div>
     <div id="select">
         <div *ngIf="(authInfo$ | async).user?.username === 'registrar'; else elseTemplate">
-            registrar select box
+            <select name="registrarSelectBox" id="registrarSB">
+               <option value="registrar">registrar</option>
+               <option value=dir
+                    *ngFor="let dir of directories">
+                   {{dir}}
+                </option>
+            </select>
         </div>
         <ng-template #elseTemplate>
             <div>
