@@ -5,11 +5,13 @@ import * as actions from '../actions/userfiles.actions';
 export interface State {
     userFilesArray: [UserFile[]];
     arrayPointer: number;
+    selectedArrayIndex: number;
 }
 
 export const initialState: State = {
     userFilesArray: null,
-    arrayPointer: 0
+    arrayPointer: 0,
+    selectedArrayIndex: 0
 };
 
 export function reducer(state = initialState, action: actions.UserFilesActions) {
@@ -29,9 +31,15 @@ export function reducer(state = initialState, action: actions.UserFilesActions) 
                 ...state, arrayPointer: 0
             };
         }
+        case UserFilesActionTypes.SETSELECTEDINDEX: {
+            return {
+                ...state, selectedArrayIndex: action.payload
+            };
+        }
         default: return state;
     }
 }
 
 export const getUserFilesArray = (state: State) => state.userFilesArray;
 export const getArrayPointer = (state: State) => state.arrayPointer;
+export const getSelectedArrayIndex = (state: State) => state.selectedArrayIndex;

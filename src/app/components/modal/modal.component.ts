@@ -42,13 +42,7 @@ export class ModalComponent implements OnInit {
     submit() {
         const username = this.usernameFormControl.value;
         const password = this.passwordFormControl.value;
-        this.authenticationService.signIn({username: username, password: password})
-            .subscribe((data: AuthInfo) => {
-                this.store.dispatch(new authActions.SignIn(data));
-                this.modalService.modalSubject.next(false);
-            },
-            (error) => {
-                console.log(error);
-            });
+        this.store.dispatch(new authActions.SignIn({username: username, password: password}));
+        this.modalService.modalSubject.next(false);
     }
 }

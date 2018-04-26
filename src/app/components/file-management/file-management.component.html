@@ -34,7 +34,7 @@
                 <th class="filesize">File Size</th>
                 <th class="download">Download</th>
             </tr>
-            <tr *ngFor="let file of files">
+            <tr *ngFor="let file of (currentFilesArray$ | async)">
                 <td class="filename padding">{{ file.filename }}</td>
                 <td class="filetype" [appIcon]="file.filetype">
                     <div>{{ file.filetype }}</div>
@@ -50,7 +50,6 @@
     </div>
     <input type="text" name="search" #filename (keyup.enter)="searchFile(filename.value)">
     <div id="pagination">
-        <app-pagination [filesSubject]="filesSubject"
-        (pageClick)="changePage($event)"></app-pagination>
+        <app-pagination> </app-pagination>
     </div>
 </div>

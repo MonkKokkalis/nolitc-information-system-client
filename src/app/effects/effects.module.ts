@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 
-import { InitEffect } from './init.effect';
-import { FileService } from '../components/file-management/services/getfiles.service';
+import { FileService } from '../components/file-management/services/file.service';
+import { SignInEffect } from './signin.effect';
 import { SetArrayEffect } from './setarray.effect';
+import { SetArrayPointerEffect } from './setarraypointer.effect';
+import { InitFilesEffect } from './initfiles.effect';
 @NgModule({
     imports: [
-        EffectsModule.forRoot([InitEffect, SetArrayEffect])
+        EffectsModule.forRoot([SignInEffect, SetArrayEffect,
+            SetArrayPointerEffect, InitFilesEffect])
     ],
     exports: [
         EffectsModule

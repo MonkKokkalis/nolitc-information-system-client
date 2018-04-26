@@ -1,8 +1,7 @@
-import { Component, Input, Output, OnInit, EventEmitter, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { Files, File } from '../../interfaces/files.interface';
-import { Store } from '@ngrx/store';
+import { UserFile } from '../../interfaces/files.interface';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../store/reducers/app.reducer';
 import * as fromUserFiles from '../../store/actions/userfiles.actions';
 @Component({
@@ -12,60 +11,30 @@ import * as fromUserFiles from '../../store/actions/userfiles.actions';
 })
 
 export class PaginationComponent implements OnInit {
-    @Output() pageClick: EventEmitter<number> = new EventEmitter();
-    @Input() filesSubject: Subject<[File[]]>;
-    filesArray: [File[]];
-    page = [];
-    arrayPointer: number;
+    arrayPointer$: Observable<number>;
+    rightArrowVisible$: Observable<boolean>;
+    page$: Observable<any>;
 
     constructor(private rend: Renderer2, private store: Store<fromRoot.AppState>) { }
 
     ngOnInit() {
-        this.filesArray = [null];
-        this.arrayPointer = 0;
-        this.filesSubject
-        .subscribe((data: [File[]]) => {
-            this.arrayPointer = 0;
-            this.page =  data.slice(0, 5);
-            this.filesArray = data;
-        });
+        this.arrayPointer$ = this.store.pipe(select(fromRoot.selectArrayPointer));
+        this.rightArrowVisible$ = this.store.pipe(select(fromRoot.selectRighttArrowVisible));
+        this.page$ = this.store.pipe(select(fromRoot.selectFilesArraySlice));
     }
 
     pageLeft() {
-        this.arrayPointer -= 5;
-        this.page = this.filesArray.slice(this.arrayPointer, this.arrayPointer + 5);
-        this.pageClick.emit(this.arrayPointer);
-
-        // testing
         this.store.dispatch(new fromUserFiles.SetArrayPointer(-5));
     }
 
     pageRight() {
-        this.arrayPointer += 5;
-        this.page = this.filesArray.slice(this.arrayPointer, this.arrayPointer + 5);
-        this.pageClick.emit(this.arrayPointer);
-
-        // testing
         this.store.dispatch(new fromUserFiles.SetArrayPointer(5));
-
     }
 
     onClick(index: number, event) {
-        this.pageClick.emit(index + this.arrayPointer);
+        this.store.dispatch(new fromUserFiles.SetSelectedIndex(index));
         this.removeClass(event.target.parentElement.children);
         this.rend.addClass(event.target, 'active');
-    }
-
-    getArrayPointerRight() {
-        if (this.filesArray.slice(this.arrayPointer + 5,
-                this.arrayPointer + 10).length < 1) {
-            return true;
-        }
-        return false;
-    }
-
-    getArrayPointer() {
-        return this.arrayPointer;
     }
 
     removeClass(elements) {

@@ -19,7 +19,7 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: authActions.AuthActions) {
     switch (action.type) {
-        case AuthActionTypes.SIGNIN:
+        case AuthActionTypes.SETUSER:
             return {
                 ...state, user: action.payload.user, token: action.payload.token
             };

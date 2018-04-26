@@ -30,3 +30,8 @@ export interface User {
     firstname: string;
     lastname: string;
 }
+
+export interface SignInInfo {
+    username: string;
+    password: string;
+}

@@ -7,7 +7,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 @Injectable()
 export class AuthenticationService {
     url = 'http://192.168.254.102/api/user/signin';
-
+    // url = 'http://192.168.0.110/api/user/signin';
     // url = 'http://127.0.0.1/api/user/signin';
     // url = 'http://192.168.1.231/api/user/signin';
     // url = 'http://20.0.3.32/api/user/signin';
@@ -16,12 +16,6 @@ export class AuthenticationService {
     signIn(params: {username: string, password: string}): Observable<Object> {
     return this.httpClient.post(this.url, {username: params.username,
         password: params.password},
-            {responseType: 'json'})
-        .pipe(
-            retry(3),
-            catchError((error: HttpErrorResponse) =>
-                new ErrorObservable(error.error.message)
-            )
-        );
+            {responseType: 'json'});
     }
 }
