@@ -3,13 +3,6 @@ export interface Files {
     files: [File[]];
 }
 
-export interface File {
-    filename: string;
-    size: string;
-    filetype: string;
-    downloadUrl: string;
-}
-
 export interface Response {
     files: number;
 }

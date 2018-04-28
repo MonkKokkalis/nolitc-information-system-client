@@ -1,0 +1,29 @@
+<div class="window" [ngClass]="{visible: (windowVisibility$ | async)}">
+    <div class="content">
+        <div class="header">
+            <div class="title">
+                File Upload
+            </div>
+            <span (click) ="closeUploadWindow()">&times;</span>
+        </div>
+        <div class="body">
+            <ul>
+                <li *ngFor="let file of (filesForUpload$ | async); index as i">
+                    <div class="card">
+                        <div class="card-header">
+                            File {{i + 1}}
+                        </div>
+                        <div class="card-body">
+                            <li>File Name: {{file.name}}</li>
+                            <li>File Type: {{file.type}}</li>
+                            <li>File Size: {{file.size}}</li>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            modal footer
+        </div>
+    </div>
+</div>

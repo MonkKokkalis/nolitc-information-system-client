@@ -1,0 +1,108 @@
+.window {
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.title {
+    display: block;
+    width: 100%;
+    left: 0;
+    position: relative;
+    border: 1px solid blue;
+    text-align: center;
+}
+
+.content {
+    margin: 20px auto;
+    background-color: #f2f2f2;
+    height: 60%;
+    width: 40%;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.header {
+    height: 10%;
+    padding: 5px;
+    width: 100%;
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+
+.body {
+    border: 3px solid yellow;
+
+    padding: 10px;
+    height: 75%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.footer {
+    height: 15%
+}
+
+ul {
+    list-style-type: none;
+}
+
+.card {
+    display: block;
+    border: 1px solid rgb(0, 113, 128);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.card-header {
+    padding: 8px 0;
+    text-align: center;
+    height: 20%;
+    color: #f2f2f2;
+    width: inherit;
+    background-color: rgb(14, 36, 163)
+}
+
+.card-body {
+    font-family: Gothic;
+}
+
+span {
+    position: relative;
+    height: 0;
+    width: 0;
+    bottom: 30px;
+    right: 40px;
+    color: #aaaaaa;
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+li {
+    display: block;
+    border: 2px solid green;
+    margin-top: 10px;
+    height: 60%;
+    width: 100%;
+}
+
+span:hover, span:focus {
+    cursor: pointer;
+    color: #000;
+}
+
+.visible {
+    display: block;
+}
+
+.footer {
+    margin-left: 32px;
+}

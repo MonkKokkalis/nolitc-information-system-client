@@ -19,6 +19,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { AuthenticationService } from './services/authentication.service';
 import { IconDirective } from './directives/icon.directive';
 import * as AppState from './store/reducers/app.reducer';
+import { UploadWindowComponent } from './components/upload-window/upload-window.component';
 @NgModule({
   declarations: [
     AlertComponent,
@@ -28,7 +29,8 @@ import * as AppState from './store/reducers/app.reducer';
     IconDirective,
     ModalComponent,
     NavComponent,
-    PaginationComponent
+    PaginationComponent,
+    UploadWindowComponent
   ],
   imports: [
     BrowserModule,

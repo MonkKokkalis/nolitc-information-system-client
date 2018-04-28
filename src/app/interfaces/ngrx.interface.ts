@@ -1,4 +1,4 @@
-import { File, Files } from './files.interface';
+import { Files } from './files.interface';
 
 export interface AuthenticationState {
     user: {
