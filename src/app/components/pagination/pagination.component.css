@@ -1,17 +1,17 @@
 #pagination {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(12, 1fr);
 }
 #arrowLeft{
     grid-column: 2 / 3;
 }
 
 #arrowRight {
-    grid-column: 7 /8;
+    grid-column: 11 /12;
 }
 
 #page-buttons {
-    grid-column: 3 / 7;
+    grid-column: 3 / 11;
 }
 
 #page {
@@ -28,6 +28,8 @@ button {
 }
 
 .arrow {
+    outline: none;
+    display: inline;
     border: none;
     background-color: transparent;
 }

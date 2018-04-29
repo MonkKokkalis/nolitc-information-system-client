@@ -5,9 +5,9 @@ import { FileManagementComponent } from '../components/file-management/file-mana
 import { RouteGuard } from './route-guard';
 
 const routes: Routes = [
-    {path: 'home', component: HomeComponent},
+    {path: '', component: HomeComponent},
     {path: 'file-management', component: FileManagementComponent, canActivate: [RouteGuard]},
-    {path: '', redirectTo: '/home', pathMatch: 'full'}
+    {path: '', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

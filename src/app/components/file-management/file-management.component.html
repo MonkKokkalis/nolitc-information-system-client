@@ -4,7 +4,7 @@
     </div>
     <div id="file-input-container">
         <button class="button">Upload Files</button>
-        <input type="file" multiple name="file-input" (change)="selectFiles($event)">
+        <input type="file" multiple name="file-input" (input)="selectFiles($event)">
     </div>
     <div id="select">
         <div *ngIf="(authInfo$ | async).user?.username === 'registrar'; else elseTemplate">

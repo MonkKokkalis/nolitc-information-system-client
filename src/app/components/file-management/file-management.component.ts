@@ -36,15 +36,16 @@ export class FileManagementComponent implements OnInit {
 
     selectFiles(event) {
         const files = Array.from(<File[]>event.target.files);
-        this.store.dispatch(new fromFileUpload.SetFiles(files));
-        this.store.dispatch(new fromFileUpload.ShowWindow);
+        if (files.length > 0) {
+            this.store.dispatch(new fromFileUpload.SetFiles(files));
+            this.store.dispatch(new fromFileUpload.ShowWindow);
+        }
     }
 
     searchFile(filename: string) {
         this.fileService.searchFile(filename)
         .subscribe((data: [UserFile[]]) => {
             this.store.dispatch(new fromUserFiles.SetUserFiles(data));
-            this.store.dispatch(new fromComponentState.SetAlertText('test'));
         });
     }
 
@@ -57,4 +58,5 @@ export class FileManagementComponent implements OnInit {
     getDirectories() {
         // return this.fileService.getDirectories(this.user);
     }
+    // testing
 }

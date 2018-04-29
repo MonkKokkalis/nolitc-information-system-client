@@ -1,4 +1,4 @@
-<div class="window" [ngClass]="{visible: (windowVisibility$ | async)}">
+<div class="window" *ngIf=" (windowVisibility$ | async)">
     <div class="content">
         <div class="header">
             <div class="title">
@@ -11,19 +11,25 @@
                 <li *ngFor="let file of (filesForUpload$ | async); index as i">
                     <div class="card">
                         <div class="card-header">
-                            File {{i + 1}}
+                            {{file.name}}
                         </div>
                         <div class="card-body">
-                            <li>File Name: {{file.name}}</li>
-                            <li>File Type: {{file.type}}</li>
-                            <li>File Size: {{file.size}}</li>
+                            <div class="card-content">
+                                File Type: {{file.type}}
+                            </div>
+                            <div class="card-content">
+                                File Size: {{file.size}}
+                            </div>
+                            <div class="card-content">
+                                <app-progress-bar [fileForUpload]="file"></app-progress-bar>
+                            </div>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
         <div class="footer">
-            modal footer
+            <button type="button" (click)="submit()">Submit</button>
         </div>
     </div>
 </div>

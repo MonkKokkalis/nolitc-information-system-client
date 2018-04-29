@@ -10,7 +10,6 @@ export enum FileUploadActionTypes {
 export enum FileUploadState {
     STANDBY = 'Stand By',
     UPLOADING = 'Uploading',
-    FINISHED = 'Finished'
 }
 
 export class ShowWindow implements Action {
@@ -28,7 +27,7 @@ export class SetFiles implements Action {
 
 export class SetFileUploadState implements Action {
     readonly type = FileUploadActionTypes.SETFILEUPLOADSTATE;
-    constructor(public payload: FileUploadState) {}
+    constructor(public payload: string) {}
 }
 
 export type FileUploadAction = ShowWindow | HideWindow | SetFiles | SetFileUploadState;

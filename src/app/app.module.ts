@@ -18,8 +18,9 @@ import { ModalService } from './services/modal.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { AuthenticationService } from './services/authentication.service';
 import { IconDirective } from './directives/icon.directive';
-import * as AppState from './store/reducers/app.reducer';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { UploadWindowComponent } from './components/upload-window/upload-window.component';
+import * as AppState from './store/reducers/app.reducer';
 @NgModule({
   declarations: [
     AlertComponent,
@@ -30,6 +31,7 @@ import { UploadWindowComponent } from './components/upload-window/upload-window.
     ModalComponent,
     NavComponent,
     PaginationComponent,
+    ProgressBarComponent,
     UploadWindowComponent
   ],
   imports: [

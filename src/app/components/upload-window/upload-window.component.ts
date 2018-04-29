@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['./upload-window.component.css']
 })
 export class UploadWindowComponent implements OnInit {
-    private windowVisibility$: Observable<boolean>;
+    windowVisibility$: Observable<boolean>;
     filesForUpload$: Observable<File[]>;
     ngOnInit() {
         this.windowVisibility$ = this.store.
@@ -20,6 +20,11 @@ export class UploadWindowComponent implements OnInit {
 
     closeUploadWindow() {
         this.store.dispatch(new fromFileUploadAction.HideWindow);
+        this.store.dispatch(new fromFileUploadAction.SetFileUploadState('Stand By'));
+    }
+
+    submit() {
+        this.store.dispatch(new fromFileUploadAction.SetFileUploadState('Uploading'));
     }
 
     constructor(private store: Store<fromRoot.AppState>) {}

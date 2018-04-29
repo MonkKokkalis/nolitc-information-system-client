@@ -1,5 +1,5 @@
 .window {
-    display: none;
+    display: block;
     height: 100%;
     left: 0;
     position: fixed;
@@ -10,26 +10,24 @@
 }
 
 .title {
+    padding-top: 5px;
     display: block;
     width: 100%;
-    left: 0;
-    position: relative;
-    border: 1px solid blue;
     text-align: center;
 }
 
 .content {
     margin: 20px auto;
     background-color: #f2f2f2;
-    height: 60%;
-    width: 40%;
+    height: 63%;
+    width: 35%;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid grey;
 }
 
 .header {
     height: 10%;
-    padding: 5px;
+    padding: 0;
     width: 100%;
     font-family: Verdana;
     font-size: 20px;
@@ -37,41 +35,59 @@
 
 
 .body {
-    border: 3px solid yellow;
-
-    padding: 10px;
     height: 75%;
-    overflow-x: hidden;
-    overflow-y: auto;
     width: 100%;
 }
 
 .footer {
+    margin-top: 10px;
     height: 15%
 }
 
 ul {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     list-style-type: none;
+    padding: 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .card {
+    width: 80%;
+    margin: auto;
     display: block;
-    border: 1px solid rgb(0, 113, 128);
-    border-radius: 8px;
-    width: 100%;
+    border: 2px groove rgb(0, 113, 128);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .card-header {
     padding: 8px 0;
     text-align: center;
     height: 20%;
-    color: #f2f2f2;
-    width: inherit;
+    color:white;
+    width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     background-color: rgb(14, 36, 163)
 }
 
 .card-body {
-    font-family: Gothic;
+    padding: 5px 20px;
+    display: block;
+    font-family: Arial;
+    font-size: 14px;
+    background-color: rgb(251, 251, 255);
+    height: 80%;
+}
+
+.card-content {
+    width: 100%;
+    padding-top: 5px;
+    color: rgb(131, 130, 130);
 }
 
 span {
@@ -88,10 +104,7 @@ span {
 
 li {
     display: block;
-    border: 2px solid green;
-    margin-top: 10px;
-    height: 60%;
-    width: 100%;
+    margin: 5px;
 }
 
 span:hover, span:focus {
@@ -99,10 +112,17 @@ span:hover, span:focus {
     color: #000;
 }
 
-.visible {
-    display: block;
-}
-
 .footer {
     margin-left: 32px;
+}
+
+button {
+    background-color: #434C9F;
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 12px 10px;
+    font-size: 18x;
+    font-family: Franklin Gothic Medium;
 }
